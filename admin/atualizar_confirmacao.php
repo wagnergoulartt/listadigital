@@ -46,7 +46,7 @@ if ($confirmado == 2) { // Se está confirmando a presença
         $qrcode->render($qr_data, $qr_file);
 
         // Atualiza o banco com o código do QR e status de confirmação
-        $query = "UPDATE convidados SET confirmado = ?, qr_code = ? WHERE id = ?";
+        $query = "UPDATE pagamentos SET confirmado = ?, qr_code = ? WHERE id = ?";
         $stmt = mysqli_prepare($conexao, $query);
         mysqli_stmt_bind_param($stmt, "isi", $confirmado, $unique_code, $id);
     } catch (Exception $e) {
@@ -54,7 +54,7 @@ if ($confirmado == 2) { // Se está confirmando a presença
     }
 } else {
     // Se está desconfirmando, remove o QR code existente
-    $query_select = "SELECT qr_code FROM convidados WHERE id = ?";
+    $query_select = "SELECT qr_code FROM pagamentos WHERE id = ?";
     $stmt_select = mysqli_prepare($conexao, $query_select);
     mysqli_stmt_bind_param($stmt_select, "i", $id);
     mysqli_stmt_execute($stmt_select);
@@ -70,7 +70,7 @@ if ($confirmado == 2) { // Se está confirmando a presença
     }
 
     // Atualiza o banco removendo o QR code
-    $query = "UPDATE convidados SET confirmado = ?, qr_code = NULL WHERE id = ?";
+    $query = "UPDATE pagamentos SET confirmado = ?, qr_code = NULL WHERE id = ?";
     $stmt = mysqli_prepare($conexao, $query);
     mysqli_stmt_bind_param($stmt, "ii", $confirmado, $id);
 }

@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Prepara e executa a query de inserção (sem mes e tema)
-        $query = "INSERT INTO convidados (nome, documento, whatsapp) VALUES (?, ?, ?)";
+        $query = "INSERT INTO pagamentos (nome, documento, whatsapp) VALUES (?, ?, ?)";
         $stmt = mysqli_prepare($conexao, $query);
 
         if (!$stmt) {

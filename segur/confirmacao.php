@@ -15,7 +15,7 @@ if (file_exists(__DIR__ . '/../config.php')) {
 $id = intval($_POST["id"]);
 
 // Busca estado atual
-$query = "SELECT presenca FROM convidados WHERE id = $id";
+$query = "SELECT presenca FROM pagamentos WHERE id = $id";
 $result = mysqli_query($conexao, $query);
 
 if ($row = mysqli_fetch_assoc($result)) {
@@ -23,7 +23,7 @@ if ($row = mysqli_fetch_assoc($result)) {
     $nova_presenca = $row["presenca"] ? 0 : 1;
     
     // Atualiza
-    mysqli_query($conexao, "UPDATE convidados SET presenca = $nova_presenca WHERE id = $id");
+    mysqli_query($conexao, "UPDATE pagamentos SET presenca = $nova_presenca WHERE id = $id");
 }
 
 mysqli_close($conexao);

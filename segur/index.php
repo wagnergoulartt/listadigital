@@ -84,9 +84,9 @@
             <?php
             require_once __DIR__ . '/../config.php';
             if (isset($conexao)) {
-                $q1 = mysqli_fetch_assoc(mysqli_query($conexao, "SELECT COUNT(*) as qtd FROM convidados WHERE confirmado = 2"));
+                $q1 = mysqli_fetch_assoc(mysqli_query($conexao, "SELECT COUNT(*) as qtd FROM pagamentos WHERE confirmado = 2"));
                 $confirmados = $q1['qtd'] ?? 0;
-                $q2 = mysqli_fetch_assoc(mysqli_query($conexao, "SELECT COUNT(*) as qtd FROM convidados WHERE presenca = 1"));
+                $q2 = mysqli_fetch_assoc(mysqli_query($conexao, "SELECT COUNT(*) as qtd FROM pagamentos WHERE presenca = 1"));
                 $presentes = $q2['qtd'] ?? 0;
                 echo "CONFIRMADOS: <b>$confirmados</b>  •  PRESENTES: <b>$presentes</b>";
             }
@@ -109,7 +109,7 @@
                     <tbody>
                         <?php
                         if (isset($conexao)) {
-                            $query = "SELECT * FROM convidados WHERE confirmado = 2 ORDER BY nome ASC";
+                            $query = "SELECT * FROM pagamentos WHERE confirmado = 2 ORDER BY nome ASC";
                             $result = mysqli_query($conexao, $query);
                             while ($row = mysqli_fetch_assoc($result)) {
                                 $nameColor = (isset($row['cor']) && $row['cor'] == 'vermelho') ? "#dc3545" : "#333";

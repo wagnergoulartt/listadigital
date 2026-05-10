@@ -7,12 +7,12 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
     // Verifica se o convidado existe no banco de dados
-    $query = "SELECT * FROM convidados WHERE id = $id";
+    $query = "SELECT * FROM pagamentos WHERE id = $id";
     $result = mysqli_query($conexao, $query);
 
     if (mysqli_num_rows($result) > 0) {
         // Remove o convidado do banco de dados
-        $query = "DELETE FROM convidados WHERE id = $id";
+        $query = "DELETE FROM pagamentos WHERE id = $id";
         mysqli_query($conexao, $query);
     }
 

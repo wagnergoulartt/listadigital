@@ -231,7 +231,7 @@ require_once __DIR__ . '/../config.php';
         <div class="col-12 col-md-10 col-lg-8" id="guestListContainer">
             
             <?php
-            $query = "SELECT id, nome, documento, whatsapp, confirmado FROM convidados ORDER BY nome ASC";
+            $query = "SELECT id, nome, documento, whatsapp, confirmado FROM pagamentos ORDER BY nome ASC";
             $result = mysqli_query($conexao, $query);
 
             if (mysqli_num_rows($result) > 0) {
@@ -281,7 +281,7 @@ require_once __DIR__ . '/../config.php';
                     // Compartilhar (WhatsApp)
                     if (!empty($row["whatsapp"])) {
                         $whatsappNumber = preg_replace("/[^0-9]/", "", $row["whatsapp"]);
-                        $message = "Olá, *" . $row["nome"] . "!* 👋\nSeu QrCode de acesso ao evento está pronto!\n\n*Para visualizar, acesse o link:*\nhttps://socializando.com.br/social/qr.php?id=" . $row["id"] . "\n\n*IMPORTANTE:*\nEste QR Code é pessoal e intransferível. Ele será indispensável para sua entrada no evento. Não compartilhe com terceiros e certifique-se de tê-lo acessível no momento do check-in.\n\n*Nos vemos na Social!*";
+                        $message = "Olá, *" . $row["nome"] . "!* 👋\nSeu QrCode de acesso ao evento está pronto!\n\n*Para visualizar, acesse o link:*\nhttps://socializando.com.br/confirmar/qr.php?id=" . $row["id"] . "\n\n*IMPORTANTE:*\nEste QR Code é pessoal e intransferível. Ele será indispensável para sua entrada no evento. Não compartilhe com terceiros e certifique-se de tê-lo acessível no momento do check-in.\n\n*Nos vemos na Social!*";
                         
                         echo "<a href='https://wa.me/55{$whatsappNumber}?text=" . urlencode($message) . "' target='_blank' class='btn btn-dark shadow-sm btn-share'>";
                         echo "<i class='bi bi-qr-code-scan'></i> Enviar QR Code";

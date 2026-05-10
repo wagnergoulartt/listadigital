@@ -20,14 +20,14 @@ if (!isset($_POST['id']) || empty($_POST['id'])) {
 $id = intval($_POST['id']); // Garante que é número
 
 // 4. Busca no Banco (Verifica se existe e se pagou)
-$query = "SELECT id, nome, presenca FROM convidados WHERE id = $id AND confirmado = 2 LIMIT 1";
+$query = "SELECT id, nome, presenca FROM pagamentos WHERE id = $id AND confirmado = 2 LIMIT 1";
 $result = mysqli_query($conexao, $query);
 
 if ($result && $row = mysqli_fetch_assoc($result)) {
     
     if ($row['presenca'] == 0) {
         // --- AINDA NÃO ENTROU: MARCA PRESENÇA ---
-        $update = "UPDATE convidados SET presenca = 1 WHERE id = $id";
+        $update = "UPDATE pagamentos SET presenca = 1 WHERE id = $id";
         
         if (mysqli_query($conexao, $update)) {
             echo json_encode([

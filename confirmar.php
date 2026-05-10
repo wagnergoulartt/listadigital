@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Utilizamos prepared statements para garantir a segurança contra SQL Injection
         // Inserimos com confirmado = 0 (pendente) ou ajuste para 2 (confirmado) conforme sua regra de negócio
-        $query = "INSERT INTO convidados (nome, documento, whatsapp, confirmado) VALUES (?, ?, ?, 0)";
+        $query = "INSERT INTO pagamentos (nome, documento, whatsapp, confirmado) VALUES (?, ?, ?, 0)";
         
         if ($stmt = $conexao->prepare($query)) {
             $stmt->bind_param("sss", $nome, $documento, $whatsapp);

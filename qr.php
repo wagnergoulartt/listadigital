@@ -80,7 +80,7 @@ use chillerlan\QRCode\QROptions;
         require_once __DIR__ . '/config.php';
 
         $id = intval($_GET['id']);
-        $query = "SELECT * FROM convidados WHERE id = ?";
+        $query = "SELECT * FROM pagamentos WHERE id = ?";
         $stmt = mysqli_prepare($conexao, $query);
         mysqli_stmt_bind_param($stmt, "i", $id);
         mysqli_stmt_execute($stmt);

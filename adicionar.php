@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     file_put_contents($qr_filename, $qrcode_image);
 
     // Consulta para obter os valores de mes e tema do registro com o menor id
-    $query_get_min_id_values = "SELECT mes, tema FROM convidados WHERE id = (SELECT MIN(id) FROM convidados)";
+    $query_get_min_id_values = "SELECT mes, tema FROM pagamentos WHERE id = (SELECT MIN(id) FROM pagamentos)";
     $result_get_min_id_values = mysqli_query($conexao, $query_get_min_id_values);
 
     if ($result_get_min_id_values && mysqli_num_rows($result_get_min_id_values) > 0) {
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Prepara a query SQL usando instruções preparadas
-    $query = "INSERT INTO convidados (nome, documento, whatsapp, qr_code, mes, tema) VALUES (?, ?, ?, ?, ?, ?)";
+    $query = "INSERT INTO pagamentos (nome, documento, whatsapp, qr_code, mes, tema) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = mysqli_prepare($conexao, $query);
 
     // Vincula os parâmetros e executa a query
